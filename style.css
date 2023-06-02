@@ -3,21 +3,88 @@ body{
     background-color: #212121;
     color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    gap: 20px;
     align-items: center;
 }
 
+.retrying{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 150px;
+}
+.retry{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    border-radius: 15px;
+    background-color: rgb(19, 132, 237);
+    cursor: pointer;
+    height: 50px;
+    color: white;
+}
+.retry:hover{
+    background-color: white;
+    color:rgb(19, 132, 237);
+    border: 2px rgb(19, 132, 237) solid;
+}
 .container{
+    display:none;
     width: 500px;
     height: 500px;
     border-radius: 15px;
     background-color: white;
     color: black;
-    display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
 
 }
 .block{
     border: solid 1px black;
+}
+.block[id='cell 1']{
+    border-top-left-radius: 15px;
+}
+.block[id='cell 3']{
+    border-top-right-radius: 15px;
+}
+.block[id='cell 7']{
+    border-bottom-left-radius: 15px;
+}
+.block[id='cell 9']{
+    border-bottom-right-radius: 15px;
+}
+#nameForm{
+    border-radius: 15px;
+    height: 250px;
+    display:grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+.entry{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.submit{
+    width: 100px;
+    height: 25px;
+    font-size: 1rem;
+    background-color: rgb(19, 132, 237);
+    color: white;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+input{
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(208, 208, 208);
+    padding-left: 10px;;
 }
