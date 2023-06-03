@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body{
     font-family: 'Roboto', system-ui;
     background-color: #212121;
@@ -13,7 +14,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 200px;
+    height: 50px;
     width: 150px;
 }
 .retry{
@@ -31,6 +32,16 @@ body{
     background-color: white;
     color:rgb(19, 132, 237);
     border: 2px rgb(19, 132, 237) solid;
+}
+.winner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: 250px;
+    height: 50px;
+    padding-bottom: 0px;
 }
 .container{
     display:none;

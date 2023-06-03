@@ -4,6 +4,7 @@ let player1input = document.getElementById('player1Name');
 let player2input = document.getElementById('player2Name');
 let submit = document.querySelector('.submit');
 let retry = document.querySelector('.retrying')
+let winner = document.querySelector('.winner')
 
 submit.addEventListener('click', ()=>{
     modal.style.display = 'none'
@@ -72,13 +73,20 @@ const Game = () => {
 
   blocks.forEach((block) => {
     let winnerPlayer
+    let selectedCells = [];
     block.addEventListener('click', (event) => {
       const clickedCell = event.target.id;
-      if (selectedCells.includes(clickedCell)) {
-        console.log('Cell already selected!');
+      console.log(clickedCell)
+      if (clickedCell == "") {
+        winner.textContent = "You can't do that silly!";
+        
         return;
       }
       selectedCells.push(clickedCell);
+      console.log(selectedCells)
+      if(selectedCells.length >= 9 && hasWon == false){
+        winner.textContent = "It's a tie!"
+      }
 
       let playerSymbol;
       if (player1Turn) {
@@ -102,13 +110,14 @@ const Game = () => {
         }else if(playerSymbol == 'O'){
             winnerPlayer = player2Name
         }
+        winner.textContent = `${winnerPlayer} wins! Retry?`
         console.log(`${winnerPlayer},`, playerSymbol, 'wins!');
         let btn = document.createElement('btn')
         btn.textContent = 'Retry?'
         btn.classList.add('retry')
         retry.appendChild(btn)
 
-        btn.addEventListener('click', document.location.reload())
+        btn.addEventListener('click', )
       }
     })
   })
