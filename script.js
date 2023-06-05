@@ -5,13 +5,13 @@ let player2input = document.getElementById('player2Name');
 let submit = document.querySelector('.submit');
 let retry = document.querySelector('.retrying')
 let winner = document.querySelector('.winner')
+let btn = document.getElementById('retry')
 
 submit.addEventListener('click', ()=>{
     modal.style.display = 'none'
     container.style.display = 'grid'
     player1Name = player1input.value;
     player2Name = player2input.value;
-    console.log(player1Name)
 })
 
 const gameBoard = (() => {
@@ -32,12 +32,8 @@ const gameBoard = (() => {
   }
 })();
 
-const Players = (name) => {
-  const getScore = () => score;
-  const getPlayerTurn = () => playerTurn;
-}
-
 const Game = () => {
+    let hasWon = true;
   let player1Turn = true;
   let player2Turn = false;
   let blocks = document.querySelectorAll('.block');
@@ -54,6 +50,14 @@ const Game = () => {
     ['cell 3', 'cell 5', 'cell 7']      // Top-right to bottom-left diagonal
   ];
 
+  const manageTie = (hasWon) =>{
+    if(selectedCells.length >= 9 && !hasWon){
+        winner.textContent = "It was a tie!!"
+        btn.style.display = 'flex';
+        btn.classList.add('retry');
+    }
+  }
+  manageTie()
   const checkWin = (playerSymbol) => {
     for (let pattern of winningPatterns) {
       let hasWon = true;
@@ -68,26 +72,17 @@ const Game = () => {
       }
     }
     return false;
-  }
+  };
   
 
   blocks.forEach((block) => {
     let winnerPlayer
-    let selectedCells = [];
     block.addEventListener('click', (event) => {
       const clickedCell = event.target.id;
-      console.log(clickedCell)
-      if (clickedCell == "") {
-        winner.textContent = "You can't do that silly!";
-        
+      if (selectedCells.includes(clickedCell)) {
         return;
       }
       selectedCells.push(clickedCell);
-      console.log(selectedCells)
-      if(selectedCells.length >= 9 && hasWon == false){
-        winner.textContent = "It's a tie!"
-      }
-
       let playerSymbol;
       if (player1Turn) {
         block.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>';
@@ -103,22 +98,19 @@ const Game = () => {
       
 
       block.dataset.symbol = playerSymbol;
-      
+      manageTie();
       if (checkWin(playerSymbol)) {
         if(playerSymbol == 'X'){
             winnerPlayer = player1Name;
         }else if(playerSymbol == 'O'){
             winnerPlayer = player2Name
         }
-        winner.textContent = `${winnerPlayer} wins! Retry?`
-        console.log(`${winnerPlayer},`, playerSymbol, 'wins!');
-        let btn = document.createElement('btn')
-        btn.textContent = 'Retry?'
-        btn.classList.add('retry')
-        retry.appendChild(btn)
-
-        btn.addEventListener('click', )
+        winner.textContent = `${winnerPlayer} wins!`
+        
+        btn.style.display = 'flex';
+        btn.classList.add('retry');
       }
+      
     })
   })
 }

@@ -17,8 +17,9 @@ body{
     height: 50px;
     width: 150px;
 }
-.retry{
-    display: flex;
+#retry, .retry{
+    border: none;
+    display: none;
     align-items: center;
     justify-content: center;
     width: 100px;
@@ -28,7 +29,7 @@ body{
     height: 50px;
     color: white;
 }
-.retry:hover{
+#retry:hover{
     background-color: white;
     color:rgb(19, 132, 237);
     border: 2px rgb(19, 132, 237) solid;
