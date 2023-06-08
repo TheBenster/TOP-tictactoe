@@ -16,7 +16,7 @@ HTML
 CSS
 JavaScript
 
-#How to Play
+# How to Play
 
 Open the Tic Tac Toe game in a web browser.
 Enter the names of the players.
